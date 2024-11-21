@@ -1,0 +1,115 @@
+<style>
+  .welcome{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .welcome__image{
+    height: 100%;
+    width: 65%;
+    background-image: url("../2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .welcome__image--blur{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(50, 101, 212, 0.603);
+  }
+
+  .welcome__login{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button{
+    width: 300px;
+  }
+
+  @media (max-width: 1024px) {
+    .welcome__image{
+    width: 50%;
+    background-position:right;
+  }
+  .welcome__login{
+    width: 50%;
+    
+    }
+  }
+
+  @media (max-width: 650px) {
+    .welcome__image{
+    width: 0%;
+    background-image: none;
+  }
+  .welcome__login{
+    width: 100%;
+    }
+  }
+</style>
+
+<div class="welcome">
+  <div class="welcome__image">
+    <div class="welcome__image--blur"></div>
+  </div>
+  <div class="welcome__login">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-user-plus"></i> Register
+        </h1>
+        <%- include('partials/messages'); %>
+        <form action="/users/register" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="name"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Enter Name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+            />
+          </div>
+          <div class="form-group mt-2">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="Enter Email"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+          </div>
+          <div class="form-group mt-2">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Create Password"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+          </div>
+          <div class="form-group mt-2">
+            <label for="password2">Confirm Password</label>
+            <input
+              type="password"
+              id="password2"
+              name="password2"
+              class="form-control"
+              placeholder="Confirm Password"
+              value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+            />
+          </div>
+            <button type="submit" class="btn btn-primary btn-block mt-3">Register</button>
+        </form>
+        <p class="lead mt-3">Have An Account? <a href="/users/login">Login</a></p>
+      </div>
+    </div>
