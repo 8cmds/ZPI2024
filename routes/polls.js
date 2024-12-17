@@ -3,6 +3,9 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth');
 const polls = require('../controllers/getPolls');
 const Conn = require('../models/Conn_US');
+const Survey = require('../models/Survey')
+
+
 
 // Your Polls list
 router.get('/yourPolls', ensureAuthenticated, function(req, res) {
@@ -44,5 +47,23 @@ router.get('/yourPolls/:id/invatedUsers', ensureAuthenticated, function(req, res
 router.get('/yourPolls/:id/answers', ensureAuthenticated, function(req, res){
     polls.answers(req,res);
 });
+
+router.get('/yourPolls/:id/delete', ensureAuthenticated, async (req, res) => {
+    try {
+        const surveyId = req.params.id; // Pobranie ID ankiety
+        console.log(`Deleting survey with ID: ${surveyId}`);
+        
+        // Usunięcie ankiety
+        await Survey.findByIdAndDelete(surveyId);
+        req.flash('success_msg', 'Survey deleted successfully');
+        res.redirect('/polls/yourPolls'); // Przekierowanie na listę ankiet
+    } catch (err) {
+        console.error('Error deleting survey:', err);
+        req.flash('error_msg', 'Failed to delete survey');
+        res.redirect('/polls/yourPolls');
+    }
+});
+
+
 
 module.exports = router;
