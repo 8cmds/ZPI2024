@@ -42,7 +42,7 @@ router.post('/saveAnswer/:id', ensureAuthenticated, function(req,res){
                 }
             })
             .then(Conn => {
-                req.flash('success_msg', `You are answered for poll. Save that key in your computer to future check for your answers: ${newHash}`);
+                req.flash('success_msg', `You are answered for poll.`);
                 res.redirect('/dashboard');
             })
 })

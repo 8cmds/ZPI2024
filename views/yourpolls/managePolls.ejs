@@ -3,7 +3,7 @@
     height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 
   .welcome__image{
@@ -26,6 +26,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #333;
+    color: #fff;
   }
 
   button,a {
@@ -39,7 +41,7 @@
   }
   .welcome__login{
     width: 50%;
-    
+
     }
   }
 
@@ -56,13 +58,16 @@
 
 <div class="welcome">
   <div class="welcome__image">
-    <div class="welcome__image--blur"></div>
   </div>
   <div class="welcome__login">
             <h1 class="mt-4">Manage Poll</h1>
                 <a href="./<%= id %>/invate" class="btn btn-primary mb-3">Invite Users</a>
                 <a href="./<%= id %>/invatedUsers" class="btn btn-primary mb-3">Already invited users</a>
                 <a href="./<%= id %>/answers" class="btn btn-primary mb-3">Check answers</a>
+                <a href="/polls/yourPolls/<%= id %>/delete" class="btn btn-danger mb-3" onclick="return confirm('Are you sure you want to delete this survey?');">
+                  Delete Survey
+              </a>
+
                 <a href="../yourPolls" class="btn btn-secondary">Back</a>
   </div>
 </div>
